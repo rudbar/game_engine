@@ -1,9 +1,14 @@
 package engine.renderEngine;
 
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
+
+import engine.utils.Debug;
 
 public class Window extends Canvas {
 	
@@ -12,6 +17,8 @@ public class Window extends Canvas {
 	private static JFrame FRAME;
 	private static int WIDTH, HEIGHT, BUFFER_SIZE;
 	private static String TITLE;
+	
+	private static boolean isRunning;
 	
 	public Window(String title, int width, int height, int bufferSize) {
 		
@@ -40,8 +47,35 @@ public class Window extends Canvas {
 	
 	
 	public void show() {
-		
+		this.createBufferStrategy(BUFFER_SIZE);
+		isRunning = true;
 		FRAME.setVisible(true);
 	}
+
+	/**
+	 * This method is displaying the next buffer
+	 */
+	public void update() {
+		if (!isRunning()) {Debug.LogError("WINDOW_NOT_INITIALIZED");}
+		this.getBufferStrategy().show();
+	}
 	
+	public void clear(Color ClearColor) {
+		if (!isRunning()) {Debug.LogError("WINDOW_NOT_INITIALIZED");}
+		BufferStrategy st = this.getBufferStrategy();
+		Graphics g = st.getDrawGraphics();
+		g.setColor(ClearColor);
+		g.fillRect(0, 0, getWidth(), getHeight());
+	}
+
+	public void close() {
+		System.out.println("WINDOW >> CLOSING APPLICATION");
+		FRAME.dispose();
+		System.exit(0);
+	}
+	
+	public boolean isRunning() {
+		return isRunning;
+	}
 }
+

@@ -1,5 +1,7 @@
 package game;
 
+import java.awt.Color;
+
 import engine.renderEngine.Window;
 
 public class Main {
@@ -15,8 +17,14 @@ public class Main {
 
 	public static void main(String[] args) {
 		win = new Window(TITLE, WIDTH, HEIGHT, BUFFER_SIZE);
-		
 		win.show();
+		
+		while (win.isRunning()) {
+			win.clear(Color.BLACK);
+			win.update();
+		}
+		win.close();
+		
 	}
 
 }
