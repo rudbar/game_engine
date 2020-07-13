@@ -18,9 +18,20 @@ public class Window extends Canvas {
 	private static int WIDTH, HEIGHT, BUFFER_SIZE;
 	private static String TITLE;
 	
+	private GameManager gm;
+	
+	int frames, ticks, time;
+	private int lastFrames, lastTicks;
+	
+	private Thread loop;
+	private final double UPDATE_SPEED = 60;
 	private static boolean isRunning;
 	
-	public Window(String title, int width, int height, int bufferSize) {
+	public Window(String title, int width, int height, int bufferSize, GameManager gm) {
+		
+		this.gm = gm;
+		
+		
 		
 		Window.TITLE = title;
 		Window.WIDTH = width;
@@ -50,6 +61,8 @@ public class Window extends Canvas {
 		this.createBufferStrategy(BUFFER_SIZE);
 		isRunning = true;
 		FRAME.setVisible(true);
+		
+		gameLoop();
 	}
 
 	/**
@@ -77,5 +90,43 @@ public class Window extends Canvas {
 	public boolean isRunning() {
 		return isRunning;
 	}
+
+	private void gameLoop() {
+		loop = new Thread() {
+			public void run() {
+				double lastTime = System.nanoTime();
+				double delta = 0;
+				final double ns = 1e9/UPDATE_SPEED;
+				
+				double start = System.currentTimeMillis();
+				int next = 1;
+				
+				while (isRunning()) {
+					double nowTime = System.nanoTime();
+					double now = (System.currentTimeMillis()-start)/1000;
+					delta += (nowTime - lastTime)/ns;
+					lastTime = nowTime;
+					
+					while (delta >= 1) {
+						gm.update();
+						delta--;
+					}
+					gm.render();
+					
+					if (now >= next) {
+						next++;
+						time++;
+						lastFrames = frames;
+						lastTicks = ticks;
+						Debug.Log("FPS: "+lastFrames+", UPS: "+lastTicks);
+						frames = 0;
+						ticks = 0;
+					}
+				}
+				
+			}
+		}; loop.start();
+	}
+
 }
 
