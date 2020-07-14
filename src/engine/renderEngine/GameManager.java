@@ -38,7 +38,7 @@ public class GameManager {
 	void render() {
 		if (isLevelOpen()) {
 			win.clear(Color.BLACK);
-			currentLevel.render(win, this);
+			currentLevel.render(win, win.getDrawer(),this);
 			win.update();
 			win.frames++;
 		}

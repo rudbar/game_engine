@@ -19,6 +19,7 @@ public class Window extends Canvas {
 	private static String TITLE;
 	
 	private GameManager gm;
+	private Drawer drawer;
 	
 	int frames, ticks, time;
 	private int lastFrames, lastTicks;
@@ -62,6 +63,7 @@ public class Window extends Canvas {
 		isRunning = true;
 		FRAME.setVisible(true);
 		
+		drawer = new Drawer(this);
 		gameLoop();
 	}
 
@@ -128,5 +130,8 @@ public class Window extends Canvas {
 		}; loop.start();
 	}
 
+	Drawer getDrawer() {
+		return drawer;
+	}
 }
 

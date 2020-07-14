@@ -13,14 +13,13 @@ public class Main extends GameManager {
 	
 	public Main() {
 		win = createWindow(TITLE, WIDTH, HEIGHT, BUFFER_SIZE);
+		win.show();
 	}
 
 	public static void main(String[] args) {
 		Main m = new Main();
 		m.addLevel(new Game(GAME_ID));
 		m.enterLevel(GAME_ID, true);
-		//start of the game
-		win.show();
 	}
 
 }
