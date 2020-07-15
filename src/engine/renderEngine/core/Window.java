@@ -1,4 +1,4 @@
-package engine.renderEngine;
+package engine.renderEngine.core;
 
 import java.awt.Canvas;
 import java.awt.Color;

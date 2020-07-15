@@ -1,4 +1,4 @@
-package engine.renderEngine;
+package engine.renderEngine.core;
 
 public abstract class GameLevel {
 	

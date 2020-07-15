@@ -1,8 +1,10 @@
-package engine.renderEngine;
+package engine.renderEngine.core;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+
+import engine.renderEngine.graphics.Image;
 
 public class Drawer {
 	
@@ -15,6 +17,10 @@ public class Drawer {
 		this.st = win.getBufferStrategy();
 		this.g = st.getDrawGraphics();
 		g.setColor(Color.WHITE);
+	}
+	
+	public void drawImage(Image img, int x, int y) {
+		g.drawImage(img.getRawImage(), x, y, null);
 	}
 
 	public void drawString(String str, int x, int y) {

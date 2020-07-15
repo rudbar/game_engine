@@ -1,4 +1,4 @@
-package engine.renderEngine;
+package engine.renderEngine.core;
 
 import java.awt.Color;
 import java.util.ArrayList;

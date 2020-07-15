@@ -1,7 +1,7 @@
 package game;
 
-import engine.renderEngine.GameManager;
-import engine.renderEngine.Window;
+import engine.renderEngine.core.GameManager;
+import engine.renderEngine.core.Window;
 
 public class Main extends GameManager {
 
