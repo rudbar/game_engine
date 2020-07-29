@@ -8,6 +8,7 @@ import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
+import engine.inputeEngine.Input;
 import engine.utils.Debug;
 
 public class Window extends Canvas {
@@ -20,6 +21,8 @@ public class Window extends Canvas {
 	
 	private GameManager gm;
 	private Drawer drawer;
+	
+	private Input input = new Input();
 	
 	int frames, ticks, time;
 	private int lastFrames, lastTicks;
@@ -64,7 +67,14 @@ public class Window extends Canvas {
 		FRAME.setVisible(true);
 		
 		drawer = new Drawer(this);
+		
+		startInputListeners();
 		gameLoop();
+	}
+	
+	private void startInputListeners()
+	{
+		this.addKeyListener(input);
 	}
 
 	/**
@@ -120,7 +130,7 @@ public class Window extends Canvas {
 						time++;
 						lastFrames = frames;
 						lastTicks = ticks;
-						Debug.Log("FPS: "+lastFrames+", UPS: "+lastTicks);
+						//Debug.Log("FPS: "+lastFrames+", UPS: "+lastTicks);
 						frames = 0;
 						ticks = 0;
 					}
@@ -133,5 +143,37 @@ public class Window extends Canvas {
 	Drawer getDrawer() {
 		return drawer;
 	}
+	
+	public Input getInput()
+	{
+		return input;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
