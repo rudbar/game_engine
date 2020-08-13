@@ -1,6 +1,7 @@
 package engine.inputeEngine;
 
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 
 public abstract class InputCodes 
 {
@@ -34,5 +35,9 @@ public abstract class InputCodes
 	KEY_SHIFT = KeyEvent.VK_SHIFT,
 	KEY_SPACE = KeyEvent.VK_SPACE,
 	KEY_ENTER = KeyEvent.VK_ENTER,
-	KEY_ESCAPE = KeyEvent.VK_ESCAPE;
+	KEY_ESCAPE = KeyEvent.VK_ESCAPE,
+	//For mouse input
+	LEFT_MOUSE = MouseEvent.BUTTON1,
+	MIDDLE_MOUSE = MouseEvent.BUTTON2,
+	RIGHT_MOUSE = MouseEvent.BUTTON3;
 }

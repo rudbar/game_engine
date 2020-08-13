@@ -36,7 +36,6 @@ public class Input extends InputCodes implements KeyListener
 			DownKeys.remove(DownKeys.indexOf(key));
 		}
 		
-		Debug.Log("THE " + key + " KEY " + " WAS REMOVED");
 	}
 	
 	//GAME ACCESS

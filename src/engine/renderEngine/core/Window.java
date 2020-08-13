@@ -9,6 +9,7 @@ import java.awt.image.BufferStrategy;
 import javax.swing.JFrame;
 
 import engine.inputeEngine.Input;
+import engine.inputeEngine.Mouse;
 import engine.utils.Debug;
 
 public class Window extends Canvas {
@@ -23,6 +24,7 @@ public class Window extends Canvas {
 	private Drawer drawer;
 	
 	private Input input = new Input();
+	private Mouse mouse = new Mouse();
 	
 	int frames, ticks, time;
 	private int lastFrames, lastTicks;
@@ -75,6 +77,8 @@ public class Window extends Canvas {
 	private void startInputListeners()
 	{
 		this.addKeyListener(input);
+		this.addMouseListener(mouse);
+		this.addMouseMotionListener(mouse);
 	}
 
 	/**
@@ -148,6 +152,12 @@ public class Window extends Canvas {
 	{
 		return input;
 	}
+	
+	public Mouse getMouse()
+	{
+		return mouse;
+	}
+	
 }
 
 
